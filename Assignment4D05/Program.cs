@@ -25,6 +25,18 @@
 
 
             #endregion
+
+            #region NUllableTypes
+            //null isn' avalid value for variales of data type value type 
+            //null  is avalid value for variable of data type reference type 
+            //int age = null; //is false 
+            int? x = null;
+            //int y = x;    is false because null not valid for y(int ) to make y alloe null 
+            int? y = x;
+            // for another example 
+            int ?z = null;
+            int j = (int)z;//that is  not safe and not good to use (from nullable to value type );
+            #endregion
         }
     }
 }
