@@ -51,6 +51,7 @@
             int ?z = null;
             //int j = (int)z;//that is  not safe and not good to use (from nullable to value type );
             #endregion
+
             #region protectiveCodeWithNullable 
             // if you want check to write aprotective code 
             if (x.HasValue)
@@ -82,6 +83,42 @@
                 }
             };
             Console.WriteLine(employee?.department?.name ??"No Name");
+            #endregion
+
+            #region Exception Handling 
+
+            //exception is abig class have alot of excitption  inherit from him such divide by zero or out of range 
+            bool tq;
+            int num1, num2;
+
+            try
+            {
+                do
+                {
+                    Console.WriteLine("enter your first number1 ");
+                    tq = int.TryParse(Console.ReadLine(), out num1);
+                }
+                while (!tq);
+                do
+                {
+                    Console.WriteLine("enter your first number2 ");
+                    tq = int.TryParse(Console.ReadLine(), out num2);
+                }
+                while (!tq);
+                Console.WriteLine(num1 / num2);
+                throw new Exception();//for throw new exception if i want or create exception if i want 
+            }
+            catch
+            (Exception ex)
+            {
+                Console.WriteLine(ex.Message);//if user put zero in num 2 it will throw the exception 
+            }
+            finally
+            {
+                //is the part that also run if you have exception or not 
+                //(dellocate ,release ,delete ,free close )
+                Console.WriteLine("Finally ");
+            }
             #endregion
         }
     }
