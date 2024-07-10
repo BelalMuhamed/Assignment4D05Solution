@@ -32,8 +32,12 @@ namespace Assignment4D05
         {
             Read=1, write=2, Delete=4, Execute=8
         }
-
-
+        enum Colors
+        {
+            Red,
+            Green,
+            Blue
+        }
         static void Main(string[] args)
         {
             #region Boxing&UnBoxing
@@ -203,6 +207,42 @@ namespace Assignment4D05
                 //use switch because enum is refere to values of int values 
                 p ^= toogelevar;
                 Console.WriteLine(p);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            #endregion
+            #region part02 Q04
+            /*Create an enum called "Colors" with the basic colors(Red, Green, Blue) 
+             * as its members.Write a C# program that takes a color name as input from the user and displays a
+             * message indicating whether the input color is a primary color or not.*/
+            Colors color;
+            bool isValid = false;
+
+            try
+            {
+                do
+                {
+                    Console.WriteLine("Enter a color name (Red, Green, Blue):");
+                    isValid = Enum.TryParse<Colors>(Console.ReadLine(), true, out color);
+                    if (!isValid)
+                    {
+                        Console.WriteLine("Invalid input. Please enter a valid color (Red, Green, Blue).");
+                    }
+                }
+                while (!isValid);
+
+                bool isPrimaryColor = color switch
+                {
+                    Colors.Red => true,
+                    Colors.Blue => true,
+                    Colors.Green => false,
+                    _ => false
+                };
+
+                string message = isPrimaryColor ? $"{color} is a primary color." : $"{color} is not a primary color.";
+                Console.WriteLine(message);
             }
             catch (Exception ex)
             {
