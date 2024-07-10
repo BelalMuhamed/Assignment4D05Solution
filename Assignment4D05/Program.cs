@@ -16,6 +16,11 @@
             public string? email { get; set; }= null;
             public Department? department { get; set; }
         }
+        [Flags]
+        enum WeekDays:byte
+        {
+            Saturday=1,Sunday=2,Monday=4,Tuesday=8,Wednesday=16,Thursday=32,Friday=64
+        }
         static void Main(string[] args)
         {
             #region Boxing&UnBoxing
@@ -120,6 +125,18 @@
                 Console.WriteLine("Finally ");
             }
             #endregion
+
+
+            #region part02 Q1
+            
+            /*Create an enum called "WeekDays" with the days of the week (Monday to Sunday) as its members.
+             * Then, write a C# program that prints out all the days of the week using this enum.*/
+            Console.Clear();
+            WeekDays weekDays = (WeekDays)127;
+            Console.WriteLine(weekDays);
+
+            
+            #endregion
         }
-    }
+}
 }
