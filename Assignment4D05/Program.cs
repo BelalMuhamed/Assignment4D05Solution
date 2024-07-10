@@ -1,4 +1,6 @@
-﻿namespace Assignment4D05
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Assignment4D05
 {
     internal class Program
     {
@@ -21,6 +23,11 @@
         {
             Saturday=1,Sunday=2,Monday=4,Tuesday=8,Wednesday=16,Thursday=32,Friday=64
         }
+        enum Seasons : byte
+        {
+            Spring,Summer,Autumn,Winter 
+        }
+        
         static void Main(string[] args)
         {
             #region Boxing&UnBoxing
@@ -135,7 +142,40 @@
             WeekDays weekDays = (WeekDays)127;
             Console.WriteLine(weekDays);
 
-            
+
+            #endregion
+
+            #region part02 Q02
+            /*2.Create an enum called "Season" with the four seasons(Spring, Summer, Autumn, Winter) as
+             * its members.Write a C# program that takes a season name as input from the user and displays the corresponding
+             * month range for that season. Note range for seasons ( spring march to may , summer june to august , autumn September
+             * to November , winter December to February)*/
+            Seasons seasons;
+             flag = true;
+            try
+            {
+                do
+                {
+                    Console.WriteLine("Enter your season ");
+                    Enum.TryParse<Seasons>(Console.ReadLine(), true,out seasons);//true for sensative case 
+                }
+                while (!flag);
+                //use switch because enum is refere to values of int values 
+                string monthRange = seasons switch
+                {
+                    Seasons.Spring => "Spring: March to May",
+                    Seasons.Summer => "Summer: June to August",
+                    Seasons.Autumn => "Autumn: September to November",
+                    Seasons.Winter => "Winter: December to February",
+                    _ => "Invalid season"
+
+                };
+                Console.WriteLine(monthRange);
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
             #endregion
         }
 }
