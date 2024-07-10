@@ -27,7 +27,13 @@ namespace Assignment4D05
         {
             Spring,Summer,Autumn,Winter 
         }
-        
+        [Flags]
+        enum Permissions : byte
+        {
+            Read=1, write=2, Delete=4, Execute=8
+        }
+
+
         static void Main(string[] args)
         {
             #region Boxing&UnBoxing
@@ -151,13 +157,13 @@ namespace Assignment4D05
              * month range for that season. Note range for seasons ( spring march to may , summer june to august , autumn September
              * to November , winter December to February)*/
             Seasons seasons;
-             flag = true;
+             flag = false;
             try
             {
                 do
                 {
                     Console.WriteLine("Enter your season ");
-                    Enum.TryParse<Seasons>(Console.ReadLine(), true,out seasons);//true for sensative case 
+                     flag =Enum.TryParse<Seasons>(Console.ReadLine(), true,out seasons);//true for sensative case 
                 }
                 while (!flag);
                 //use switch because enum is refere to values of int values 
@@ -177,6 +183,32 @@ namespace Assignment4D05
                 Console.WriteLine(ex.Message);
             }
             #endregion
+
+            #region part02 Q03
+            /*Assign the following Permissions (Read, write, Delete, Execute) in a form of Enum.
+            Create Variable from previous Enum to Add and Remove Permission from variable, check if specific Permission is
+            existed inside variable*/
+            Permissions toogelevar;
+            Permissions p = (Permissions)15;
+            Console.WriteLine(p);
+            flag = false;
+            try
+            {
+                do
+                {
+                    Console.WriteLine("Enter your toogele ");
+                    flag =Enum.TryParse<Permissions>(Console.ReadLine(), true, out toogelevar);//true for sensative case 
+                }
+                while (!flag);
+                //use switch because enum is refere to values of int values 
+                p ^= toogelevar;
+                Console.WriteLine(p);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            #endregion
         }
-}
+    }
 }
